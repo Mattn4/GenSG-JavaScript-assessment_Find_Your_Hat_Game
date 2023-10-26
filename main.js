@@ -14,15 +14,11 @@ const pathCharacter = '*';
 
 class Field {
     constructor(fieldgrid) {
-      this._fieldgrid = fieldgrid
-    }
-
-    get fieldgrid () {
-      return this._fieldgrid
+      this.fieldgrid = fieldgrid
     }
 
     print () {
-      return this._fieldgrid.join('\n').replace(/,/g, '')
+      return this.fieldgrid.join('\n').replace(/,/g, '')
     }
 
     static genField = generateField   
@@ -36,12 +32,23 @@ const myField = new Field([
   ]);
 
 //Generate randomized field with 3 parameters (height, width, perpercentageOfHoles)
-const gameGrid = Field.genField(3,5,25)
+const gameGrid = Field.genField(5,10,20)
 
 //--------------------Function to moving in the game-----------------------------
 const inputDirection = () => {  
 
-  let j = 0, k = 0
+  const findStartVerticalPosition = () => {
+    for (let i=0; i<gameGrid.length; i++) {
+      if (gameGrid[i].includes('*')) {
+        return i
+      }
+    }
+  }
+
+  const startingVerticalPosition = findStartVerticalPosition() 
+  const startingHorizontalPosition = gameGrid[findStartVerticalPosition()].indexOf('*')
+
+  let j = startingVerticalPosition, k = startingHorizontalPosition
   while (true) {
     let direction = prompt('Which way?')
     direction = direction.toLowerCase()

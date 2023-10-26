@@ -1,4 +1,46 @@
 
+// create randomized field with character starting at random location
+const generateField = (height, width, percentageOfHoles) => {
+  const startingArray = ['*', '^']
+  
+  const numberOfHoles = Math.round(height*width*percentageOfHoles/100)
+  const arrayOfHoles = new Array(numberOfHoles).fill('O')
+  
+  const numberofField = height*width - numberOfHoles - 2
+  const arrayofField = new Array(numberofField).fill('░')
+
+  const initialField = startingArray.concat(arrayOfHoles).concat(arrayofField)
+
+  const shuffleArray = array => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    } 
+    return array
+  }
+
+  const initialRandomizedField = shuffleArray(initialField)
+
+  const toMatrix = (arr, width) => {
+    return arr.reduce(function (rows, key, index) { 
+      return (index % width == 0 ? rows.push([key]) 
+        : rows[rows.length-1].push(key)) && rows;
+    }, []);
+  }
+
+  const finalField = toMatrix(initialRandomizedField, width)
+
+  return finalField
+}
+
+
+// Print to test out if a randomized field is generated correctly
+// console.log(generateField(10, 10, 10).join('\n').replace(/,/g, ''))
+
+
+/* create randomized field with character starting at top left corner
 const generateField = (height, width, percentageOfHoles) => {
 
     // generate empty field with fixed height and width
@@ -37,6 +79,7 @@ const generateField = (height, width, percentageOfHoles) => {
       }
     }
     return array
-}
+}   */
 
-module.exports = generateField 
+
+module.exports = generateField  

@@ -31,124 +31,121 @@ const myField = new Field([
     ['░', '^', '░'],
   ]);
 
-//Generate randomized field with 3 parameters (height, width, perpercentageOfHoles)
+// Generate randomized field with 3 parameters (height, width, perpercentageOfHoles)
 const gameGrid = Field.genField(5,10,20)
 
-//--------------------Function to moving in the game-----------------------------
-const inputDirection = () => {  
+// Finding the starting index position of pathCharacter '*'
 
-  const findStartVerticalPosition = () => {
-    for (let i=0; i<gameGrid.length; i++) {
-      if (gameGrid[i].includes('*')) {
-        return i
-      }
+const findStartVerticalPosition = () => {
+  for (let i=0; i<gameGrid.length; i++) {
+    if (gameGrid[i].includes('*')) {
+      return i
     }
   }
-
-  const startingVerticalPosition = findStartVerticalPosition() 
-  const startingHorizontalPosition = gameGrid[findStartVerticalPosition()].indexOf('*')
-
-  let j = startingVerticalPosition, k = startingHorizontalPosition
-  while (true) {
-    let direction = prompt('Which way?')
-    direction = direction.toLowerCase()
-    
-    switch (direction) {
-      case 'r': // Moving right
-        k++
-        if (k < 0 || k > gameGrid[0].length-1) {
-          console.log('Out of field! Game over')
-          return
-        } else if (gameGrid[j][k] === hole) {
-          console.log('You trip into a hole! Game over')
-          return
-        } else if (gameGrid[j][k] === hat) {
-          console.log('You found the hat! You win!')
-          return
-        } else {
-          gameGrid[j][k] = pathCharacter
-          console.log(gameGrid.join('\n').replace(/,/g, '')) 
-        }
-        break    
-
-        /* const grid = gameGrid[j][k]
-        switch (grid) {
-        case hole:
-            gameMessage('You trip into a hole! Game over')
-            break
-        case hat:
-            gameMessage('You found the hat! You win!')
-            break
-        default:
-            gameGrid[j][k] = pathCharacter
-            gameMessage(myField.print()) 
-            break
-        } */ 
-    
-      case 'l': // Moving left 
-        k--
-        if (k < 0 || k > gameGrid[0].length-1) {
-          console.log('Out of field! Game over')
-          return
-        } else if (gameGrid[j][k] === hole) {
-          console.log('You trip into a hole! Game over')
-          return
-        } else if (gameGrid[j][k] === hat) {
-          console.log('You found the hat! You win!')
-          return
-        } else {
-          gameGrid[j][k] = pathCharacter
-          console.log(gameGrid.join('\n').replace(/,/g, ''))          
-        }
-        break
-
-      case 'd': // Moving to down
-        j++
-        if (j < 0 || j > gameGrid.length-1) {
-          console.log('Out of field! Game over')
-          return
-        } else if (gameGrid[j][k] === hole) {
-          console.log('You trip into a hole! Game over')
-          return
-        } else if (gameGrid[j][k] === hat) {
-          console.log('You found the hat! You win!')
-          return
-        } else {
-          gameGrid[j][k] = pathCharacter
-          console.log(gameGrid.join('\n').replace(/,/g, ''))         
-        }
-        break
-    
-      case 'u': // Moving up
-        j--
-        if (j < 0 || j > gameGrid.length-1) {
-          console.log('Out of field! Game over')
-          return
-        } else if (gameGrid[j][k] === hole) {
-          console.log('You trip into a hole! Game over')
-          return
-        } else if (gameGrid[j][k] === hat) {
-          console.log('You found the hat! You win!')
-          return
-        } else {
-          gameGrid[j][k] = pathCharacter
-          console.log(gameGrid.join('\n').replace(/,/g, ''))  
-        }
-        break
-
-      default:
-        console.log(`Please enter "u", "d", "l" or "r" only`)
-        break
-    }
-  } 
 }
+
+const startingVerticalPosition = findStartVerticalPosition() 
+const startingHorizontalPosition = gameGrid[findStartVerticalPosition()].indexOf('*')
 
 //--------------------------Start the game--------------------------------------------
 console.log('\nWelcome to the "Find Your Hat" game. \nGoal: Move your character (*) to reach the hat (^), while avoiding the holes (O). \n\nWarning: If you trip into a hole or move out of field, it is game over!')
 console.log('\nEnter "u" for Up \nEnter "d" for Down \nEnter "l" for Left \nEnter "r" for Right \n')
 
 console.log(gameGrid.join('\n').replace(/,/g, ''))
-inputDirection()
+
+let v = startingVerticalPosition, h = startingHorizontalPosition
+while (true) {
+  let direction = prompt('Which way?')
+  direction = direction.toLowerCase()
+    
+  switch (direction) {
+    case 'r': // Moving right
+      h++
+      if (h < 0 || h > gameGrid[0].length-1) {
+        console.log('Out of field! Game over')
+        return
+      } else if (gameGrid[v][h] === hole) {
+        console.log('You trip into a hole! Game over')
+        return
+      } else if (gameGrid[v][h] === hat) {
+        console.log('You found the hat! You win!')
+        return
+      } else {
+        gameGrid[v][h] = pathCharacter
+        console.log(gameGrid.join('\n').replace(/,/g, '')) 
+      }
+      break    
+
+      /* const grid = gameGrid[v][h]
+      switch (grid) {
+      case hole:
+          gameMessage('You trip into a hole! Game over')
+          break
+      case hat:
+          gameMessage('You found the hat! You win!')
+          break
+      default:
+          gameGrid[v][h] = pathCharacter
+          gameMessage(myField.print()) 
+          break
+      } */ 
+  
+    case 'l': // Moving left 
+      h--
+      if (h < 0 || h > gameGrid[0].length-1) {
+        console.log('Out of field! Game over')
+        return
+      } else if (gameGrid[v][h] === hole) {
+        console.log('You trip into a hole! Game over')
+        return
+      } else if (gameGrid[v][h] === hat) {
+        console.log('You found the hat! You win!')
+        return
+      } else {
+        gameGrid[v][h] = pathCharacter
+        console.log(gameGrid.join('\n').replace(/,/g, ''))          
+      }
+      break
+
+    case 'd': // Moving to down
+      v++
+      if (v < 0 || v > gameGrid.length-1) {
+        console.log('Out of field! Game over')
+        return
+      } else if (gameGrid[v][h] === hole) {
+        console.log('You trip into a hole! Game over')
+        return
+      } else if (gameGrid[v][h] === hat) {
+        console.log('You found the hat! You win!')
+        return
+      } else {
+        gameGrid[v][h] = pathCharacter
+        console.log(gameGrid.join('\n').replace(/,/g, ''))         
+      }
+      break
+  
+    case 'u': // Moving up
+      v--
+      if (v < 0 || v > gameGrid.length-1) {
+        console.log('Out of field! Game over')
+        return
+      } else if (gameGrid[v][h] === hole) {
+        console.log('You trip into a hole! Game over')
+        return
+      } else if (gameGrid[v][h] === hat) {
+        console.log('You found the hat! You win!')
+        return
+      } else {
+        gameGrid[v][h] = pathCharacter
+        console.log(gameGrid.join('\n').replace(/,/g, ''))  
+      }
+      break
+
+    default:
+      console.log(`Please enter "u", "d", "l" or "r" only`)
+      break
+  }
+} 
 
 
 /*

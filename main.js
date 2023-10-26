@@ -35,7 +35,6 @@ const myField = new Field([
 const gameGrid = Field.genField(5,10,20)
 
 // Finding the starting index position of pathCharacter '*'
-
 const findStartVerticalPosition = () => {
   for (let i=0; i<gameGrid.length; i++) {
     if (gameGrid[i].includes('*')) {
@@ -144,10 +143,35 @@ while (true) {
 } 
 
 
-/*
-function gameMessage(result = ""){
+/* function gameMessage(result = ""){
     console.log(result);
-} */
+} 
+retain this gameMessage function, but use back original if else statements instead of switch */
 
-// retain this gameMessage function, but use back original if else statements instead of switch
 
+/* Main issues 
+gameGrid[v][h]
+  if h is out of range, result be undefined
+  but if v is out of range, will appear error
+  so cannot use "gameGrid[v][h] === undefined"
+
+cannot group similar codes into functions, cuz cannot exit out of while loop
+eg 
+const winOrLose = () => {
+  if (v < 0 || v > gameGrid.length-1) {
+    console.log('Out of field! Game over')
+    return
+  } else if (gameGrid[v][h] === hole) {
+    console.log('You trip into a hole! Game over')
+    return
+  } else if (gameGrid[v][h] === hat) {
+    console.log('You found the hat! You win!')
+    return  
+}
+
+v--
+winOrLose() does not exit out of while loop
+
+ternary operation also does not work, cannot use return or break to exit out of while loop
+gameGrid[v][h] = fieldCharacter ? pathCharacter : winOrLose() return;
+*/

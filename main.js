@@ -51,10 +51,10 @@ const startingHorizontalPosition = gameGrid[findStartVerticalPosition()].indexOf
 console.log('\nWelcome to the "Find Your Hat" game. \nGoal: Move your character (*) to reach the hat (^), while avoiding the holes (O). \n\nWarning: If you trip into a hole or move out of field, it is game over!')
 console.log('\nEnter "u" for Up \nEnter "d" for Down \nEnter "l" for Left \nEnter "r" for Right \n')
 
-console.log(gameGrid.join('\n').replace(/,/g, ''))
-
 let v = startingVerticalPosition, h = startingHorizontalPosition
 while (true) {
+  console.log(gameGrid.join('\n').replace(/,/g, ''))
+
   let direction = prompt('Which way?')
   direction = direction.toLowerCase()
     
@@ -72,7 +72,6 @@ while (true) {
         return
       } else {
         gameGrid[v][h] = pathCharacter
-        console.log(gameGrid.join('\n').replace(/,/g, '')) 
       }
       break    
 
@@ -103,7 +102,6 @@ while (true) {
         return
       } else {
         gameGrid[v][h] = pathCharacter
-        console.log(gameGrid.join('\n').replace(/,/g, ''))          
       }
       break
 
@@ -120,7 +118,6 @@ while (true) {
         return
       } else {
         gameGrid[v][h] = pathCharacter
-        console.log(gameGrid.join('\n').replace(/,/g, ''))         
       }
       break
   
@@ -137,7 +134,6 @@ while (true) {
         return
       } else {
         gameGrid[v][h] = pathCharacter
-        console.log(gameGrid.join('\n').replace(/,/g, ''))  
       }
       break
 

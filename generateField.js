@@ -5,12 +5,12 @@ const generateField = (height, width, percentageOfHoles) => {
   
   // Create an array made up of holes only
   // The number of holes is based on its percentage on the field 
-  const numberOfHoles = Math.round(height*width*percentageOfHoles/100)
+  const numberOfHoles = Math.round((height*width-2)*percentageOfHoles/100)
   const arrayOfHoles = new Array(numberOfHoles).fill('O')
   
   // Create an array made up of fieldCharacter only
   // Its number is number of spaces available on the field - number of holes -'*' -'^'   
-  const numberofField = height*width - numberOfHoles - 2
+  const numberofField = (height*width-2) - numberOfHoles
   const arrayofField = new Array(numberofField).fill('░')
 
   // Combine startingArray, holes array, fieldCharacter array into one single array
@@ -20,9 +20,7 @@ const generateField = (height, width, percentageOfHoles) => {
   const shuffleArray = array => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      const temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
+      [array[i], array[j]] = [array[j], array[i]];
     } 
     return array
   }
@@ -47,7 +45,8 @@ const generateField = (height, width, percentageOfHoles) => {
 
 
 // Print to test out if a randomized field is generated correctly
-// console.log(generateField(10, 10, 10).join('\n').replace(/,/g, ''))
+//const testField = generateField(5, 10, 90)
+//console.log(testField.join('\n').replace(/,/g, ''))
 
 
 //---------------- Old codes for archiving purpose ----------------------------
@@ -93,4 +92,4 @@ const generateField = (height, width, percentageOfHoles) => {
 }   */
 
 
-module.exports = generateField  
+module.exports = generateField

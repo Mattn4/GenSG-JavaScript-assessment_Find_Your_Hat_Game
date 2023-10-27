@@ -136,6 +136,11 @@ while (true) {
       }
       break
 
+    case 'q': // quit the game
+      console.log('You have quit the game.')
+      process.exit()
+      break    
+
     default:
       console.log(`Please enter "u", "d", "l" or "r" only`)
       break
@@ -174,4 +179,14 @@ winOrLose() does not exit out of while loop
 
 ternary operation also does not work, cannot use return or break to exit out of while loop
 gameGrid[v][h] = fieldCharacter ? pathCharacter : winOrLose() return;
+*/
+
+/*
+Enhancements to considers
+Change all console log (print message) to single function (game message function)
+in the game message function:
+If win the game, ask player if wanna play another round or at harder level?
+If lose, wanna play the game again or quit?
+
+consolidate vertical & horizontal condition into separate functions 
 */

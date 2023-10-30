@@ -11,6 +11,6 @@
    - some randomized fields are unsolvable, as I don’t know how to create field validator<br><br>
 
 ### 3. What would make your experience with this assessment better?
-&nbsp;&nbsp;&nbsp;&nbsp;If some additional skills required are taught before attempting this assessment
+&nbsp;&nbsp;&nbsp;&nbsp;If some additional skills are taught before attempting this assessment
    - refactor similar codes
    - creating solvable randomized fields using field validator

@@ -80,6 +80,7 @@ const startGame = () => {
   console.log('\nPress "u" for ↑ \nPress "d" for ↓ \nPress "l" for ← \nPress "r" for → \nPress "q" to quit the game\n') 
 
   while (true) {
+    console.log('')
     console.log(gameGrid.join('\n').replace(/,/g, ''))
 
     let direction = prompt('Which way?')

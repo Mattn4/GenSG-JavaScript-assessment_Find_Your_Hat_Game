@@ -2,6 +2,4 @@
 
 Text-based single player game<br><br>
 
-<p align="center">
-   <img src="/misc/findyourhat.gif" width="500">
-</p>
+<a href="#/"><img src="/misc/findyourhat.gif" width="400"></a>
